@@ -1,0 +1,2 @@
+# XXE-Notes
+XXE techniques
