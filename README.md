@@ -33,4 +33,4 @@ The following payload will call our external dtd bypassing the SYSTEM blackliste
 
 And all we need to do is sending the payload and wait for the exfil in our server
 ![Bypass ](img/exfil.png)
-And we can see is the base64 of the /etc/passed
+And we can see is the base64 of the /etc/passwd
